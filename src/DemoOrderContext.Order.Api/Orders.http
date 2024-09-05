@@ -1,0 +1,12 @@
+### GET Order
+GET https://localhost:7219/orders/6
+
+### POST Order
+POST https://localhost:7219/orders
+Content-Type: application/json
+
+{
+  "productId": 3,
+  "quantity": 10,
+  "price": 99.99
+}

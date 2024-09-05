@@ -1,0 +1,28 @@
+﻿name: 'ordercontext'
+
+volumes:
+  db-data:
+  rabbitmq-data:
+
+services:
+  db:
+    image: mysql:8.0.32
+    command: '--default-authentication-plugin=mysql_native_password'
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=DemoOrderContextDb
+      - MYSQL_ROOT_PASSWORD=123456@qwerty
+    ports:
+      - "3306:3306"
+  
+  broker:
+    image: rabbitmq:3-management-alpine
+    environment:
+      - "RABBITMQ_DEFAULT_USER=guest"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
